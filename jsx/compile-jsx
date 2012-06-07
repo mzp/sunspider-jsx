@@ -1,9 +1,9 @@
 #!/bin/sh -x
 
-for dir in tests/*; do
+for dir in tests/sun*; do
   (cd $dir
    for i in *.jsx; do
-       ${JSX:-"JSX"} --release $i > $(basename $i jsx)js
+       ${JSX:-"JSX"} --output $(basename $i jsx)js --release $i
    done)
 
 done
