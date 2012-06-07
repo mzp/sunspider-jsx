@@ -2,3 +2,4 @@ math-partial-sums
 math-spectral-norm
 math-cordic
 string-base64
+string-fasta
