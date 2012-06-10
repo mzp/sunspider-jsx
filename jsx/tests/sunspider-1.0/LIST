@@ -3,3 +3,4 @@ math-spectral-norm
 math-cordic
 string-base64
 string-fasta
+string-validate-input
