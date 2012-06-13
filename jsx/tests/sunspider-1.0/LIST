@@ -1,6 +1,7 @@
 math-partial-sums
 math-spectral-norm
 math-cordic
+regexp-dna
 string-base64
 string-fasta
 string-validate-input
