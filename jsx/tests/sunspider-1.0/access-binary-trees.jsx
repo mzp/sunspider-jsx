@@ -56,18 +56,3 @@ class Main {
         }
     }
 }
-/*
-function TreeNode(left,right,item){
-   this.left = left;
-   this.right = right;
-   this.item = item;
-}
-
-TreeNode.prototype.itemCheck = function(){
-   if (this.left==null) return this.item;
-   else return this.item + this.left.itemCheck() - this.right.itemCheck();
-}
-
-
-
-*/
