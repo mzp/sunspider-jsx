@@ -8,4 +8,8 @@ math-cordic
 regexp-dna
 string-base64
 string-fasta
-string-validate-input
+string-validate-inputbitops-3bit-bits-in-byte
+bitops-bits-in-byte
+bitops-bitwise-and
+bitops-nsieve-bits
+controlflow-recursive
