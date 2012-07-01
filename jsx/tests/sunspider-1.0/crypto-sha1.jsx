@@ -7,7 +7,7 @@
  * See http://pajhome.org.uk/crypt/md5 for details.
  */
 
-class Main {
+class _Main {
     /*
      * Configurable variables. You may need to tweak these to be compatible with
      * the server-side, but the defaults work in most cases.
@@ -22,13 +22,13 @@ class Main {
      * They take string arguments and return either hex or base-64 encoded strings
      */
     function hex_sha1(s : string) : string {
-        return this.binb2hex(this.core_sha1(this.str2binb(s),s.length * Main.chrsz));
+        return this.binb2hex(this.core_sha1(this.str2binb(s),s.length * _Main.chrsz));
     }
     function b64_sha1(s : string) : string {
-        return this.binb2b64(this.core_sha1(this.str2binb(s),s.length * Main.chrsz));
+        return this.binb2b64(this.core_sha1(this.str2binb(s),s.length * _Main.chrsz));
     }
     function str_sha1(s : string) : string {
-        return this.binb2str(this.core_sha1(this.str2binb(s),s.length * Main.chrsz));
+        return this.binb2str(this.core_sha1(this.str2binb(s),s.length * _Main.chrsz));
     }
     function hex_hmac_sha1(key : string, data : string) : string {
         return this.binb2hex(this.core_hmac_sha1(key, data));
@@ -77,7 +77,7 @@ class Main {
                 if(j < 16) w[j] = x[i + j];
                 else w[j] = this.rol(w[j-3] ^ w[j-8] ^ w[j-14] ^ w[j-16], 1);
 
-                var t : MayBeUndefined.<number> = w[j];
+                var t : Nullable.<number> = w[j];
                 var t = this.safe_add(this.safe_add(this.rol(a, 5), this.sha1_ft(j, b, c, d)),
                                       this.safe_add(this.safe_add(e, t as number), this.sha1_kt(j)));
                 e = d;
@@ -124,7 +124,7 @@ class Main {
     function core_hmac_sha1(key : string, data : string) : Array.<number>
     {
         var bkey = this.str2binb(key);
-        if(bkey.length > 16) bkey = this.core_sha1(bkey, key.length * Main.chrsz);
+        if(bkey.length > 16) bkey = this.core_sha1(bkey, key.length * _Main.chrsz);
 
         var ipad = new number[16];
         var opad = new number[16];
@@ -134,7 +134,7 @@ class Main {
             opad[i] = bkey[i] ^ 0x5C5C5C5C;
         }
 
-        var hash = this.core_sha1(ipad.concat(this.str2binb(data)), 512 + data.length * Main.chrsz);
+        var hash = this.core_sha1(ipad.concat(this.str2binb(data)), 512 + data.length * _Main.chrsz);
         return this.core_sha1(opad.concat(hash), 512 + 160);
     }
 
@@ -164,9 +164,9 @@ class Main {
     function str2binb(str : string) : Array.<number>
     {
         var bin = new number[];
-        var mask = (1 << Main.chrsz) - 1;
-        for(var i = 0; i < str.length * Main.chrsz; i += Main.chrsz)
-        bin[i>>5] |= (str.charCodeAt(i / Main.chrsz) & mask) << (32 - Main.chrsz - i%32);
+        var mask = (1 << _Main.chrsz) - 1;
+        for(var i = 0; i < str.length * _Main.chrsz; i += _Main.chrsz)
+        bin[i>>5] |= (str.charCodeAt(i / _Main.chrsz) & mask) << (32 - _Main.chrsz - i%32);
         return bin;
     }
 
@@ -176,9 +176,9 @@ class Main {
     function binb2str(bin : Array.<number>) : string
     {
         var str = "";
-        var mask = (1 << Main.chrsz) - 1;
-        for(var i = 0; i < bin.length * 32; i += Main.chrsz)
-        str += String.fromCharCode((bin[i>>5] >>> (32 - Main.chrsz - i%32)) & mask);
+        var mask = (1 << _Main.chrsz) - 1;
+        for(var i = 0; i < bin.length * 32; i += _Main.chrsz)
+        str += String.fromCharCode((bin[i>>5] >>> (32 - _Main.chrsz - i%32)) & mask);
         return str;
     }
 
@@ -187,7 +187,7 @@ class Main {
  */
     function binb2hex(binarray : Array.<number>) : string
     {
-        var hex_tab = Main.hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
+        var hex_tab = _Main.hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
         var str = "";
         for(var i = 0; i < binarray.length * 4; i++)
         {
@@ -211,7 +211,7 @@ class Main {
             |  ((binarray[i+2 >> 2] >> 8 * (3 - (i+2)%4)) & 0xFF);
             for(var j = 0; j < 4; j++)
             {
-                if(i * 8 + j * 6 > binarray.length * 32) str += Main.b64pad;
+                if(i * 8 + j * 6 > binarray.length * 32) str += _Main.b64pad;
                 else str += tab.charAt((triplet >> 6*(3-j)) & 0x3F);
             }
         }
@@ -242,13 +242,7 @@ class Main {
         log sha1Output;
     }
 
-    static function main(){
-        new Main();
-    }
-}
-
-class _Main{
-    static function main(args : string[]): void {
-        new Main();
+    static function main(args : string[]) : void {
+        new _Main();
     }
 }

@@ -1,7 +1,7 @@
 // -*- coding: utf-8 -*-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
-class Main {
+class _Main {
     /*
      * AES Cipher function: encrypt 'input' with Rijndael algorithm
      *
@@ -46,7 +46,7 @@ class Main {
     function SubBytes(s : Array.<Array.<number>>, Nb : number) : Array.<Array.<number>> {
         // apply SBox to state S [§5.1.1]
         for (var r=0; r<4; r++) {
-            for (var c=0; c<Nb; c++) s[r][c] = Main.Sbox[s[r][c]];
+            for (var c=0; c<Nb; c++) s[r][c] = _Main.Sbox[s[r][c]];
         }
         return s;
     }
@@ -109,7 +109,7 @@ class Main {
             for (var t=0; t<4; t++) temp[t] = w[i-1][t];
             if (i % Nk == 0) {
                 temp = this.SubWord(this.RotWord(temp));
-                for (var t=0; t<4; t++) temp[t] ^= Main.Rcon[i/Nk][t];
+                for (var t=0; t<4; t++) temp[t] ^= _Main.Rcon[i/Nk][t];
             } else if (Nk > 6 && i%Nk == 4) {
                 temp = this.SubWord(temp);
             }
@@ -121,7 +121,7 @@ class Main {
 
     function SubWord(w : Array.<number>) : Array.<number> {
         // apply SBox to 4-byte word w
-        for (var i=0; i<4; i++) w[i] = Main.Sbox[w[i]];
+        for (var i=0; i<4; i++) w[i] = _Main.Sbox[w[i]];
         return w;
     }
 
@@ -329,8 +329,8 @@ class Main {
             if (Number.isNaN(o3)) h4 = 64;
             if (Number.isNaN(o2)) h3 = 64;
 
-            // use hexets to index into Main.b64, and append result to encoded string
-            enc += Main.b64.charAt(h1) + Main.b64.charAt(h2) + Main.b64.charAt(h3) + Main.b64.charAt(h4);
+            // use hexets to index into _Main.b64, and append result to encoded string
+            enc += _Main.b64.charAt(h1) + _Main.b64.charAt(h2) + _Main.b64.charAt(h3) + _Main.b64.charAt(h4);
         } while (i < str.length);
 
         return enc;
@@ -339,11 +339,11 @@ class Main {
     function decodeBase64(str : string) : string {
         var o1, o2, o3, h1, h2, h3, h4, bits, i=0, enc='';
 
-        do {  // unpack four hexets into three octets using index points in Main.b64
-            h1 = Main.b64.indexOf(str.charAt(i++));
-            h2 = Main.b64.indexOf(str.charAt(i++));
-            h3 = Main.b64.indexOf(str.charAt(i++));
-            h4 = Main.b64.indexOf(str.charAt(i++));
+        do {  // unpack four hexets into three octets using index points in _Main.b64
+            h1 = _Main.b64.indexOf(str.charAt(i++));
+            h2 = _Main.b64.indexOf(str.charAt(i++));
+            h3 = _Main.b64.indexOf(str.charAt(i++));
+            h4 = _Main.b64.indexOf(str.charAt(i++));
 
             bits = h1<<18 | h2<<12 | h3<<6 | h4;
 
@@ -446,13 +446,7 @@ class Main {
         log decryptedText;
     }
 
-    static function main() : void {
-        new Main();
-    }
-}
-
-class _Main {
     static function main(args : string[]) : void {
-        new Main();
+        new _Main();
     }
 }

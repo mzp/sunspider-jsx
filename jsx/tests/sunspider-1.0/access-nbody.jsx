@@ -171,8 +171,8 @@ class NBodySystem {
     }
 }
 
-class Main {
-    static function main() : void {
+class _Main {
+    static function main(args : string[]) : void {
         var ret;
 
         for ( var n = 3; n <= 24; n *= 2 ) {

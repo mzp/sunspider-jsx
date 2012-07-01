@@ -39,7 +39,7 @@
 // From: http://lxr.mozilla.org/mozilla/source/extensions/xml-rpc/src/nsXmlRpcClient.js#956
 
 /* Convert data (an array of integers) to a Base64 string. */
-class Main {
+class _Main {
     var toBase64Table : string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
     var base64Pad = '=';
 
@@ -136,8 +136,8 @@ class Main {
         }
     }
 
-    static function main() : void {
-        new Main();
+    static function main(args : string[]) : void {
+        new _Main();
     }
     //toBinaryTable = null;
 }

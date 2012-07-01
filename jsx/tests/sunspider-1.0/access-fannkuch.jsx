@@ -1,7 +1,7 @@
 /* The Great Computer Language Shootout
    http://shootout.alioth.debian.org/
    contributed by Isaac Gouy */
-class Main {
+class _Main {
     static function fannkuch(n : number) : number {
         var check = 0;
         var perm  = new number[n];
@@ -62,10 +62,9 @@ class Main {
         return -1;
     }
 
-    static function main() : void {
+    static function main(args : string[]) : void {
         var n = 8;
-        var ret = Main.fannkuch(n);
+        var ret = _Main.fannkuch(n);
         log ret;
     }
 }
-

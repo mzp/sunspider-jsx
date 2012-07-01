@@ -24,85 +24,85 @@
  */
 
 /////. Start CORDIC
-class Main {
-  var AG_CONST = 0.6072529350;
+class _Main {
+    static const AG_CONST = 0.6072529350;
 
-  function FIXED(X : number) : number
-  {
-	return X * 65536.0;
-  }
+    function FIXED(X : number) : number
+    {
+        return X * 65536.0;
+    }
 
-  function FLOAT(X : number) : number
-  {
-	return X / 65536.0;
-  }
+    function FLOAT(X : number) : number
+    {
+        return X / 65536.0;
+    }
 
-  function DEG2RAD(X : number) : number
-  {
-	return 0.017453 * (X);
-  }
+    function DEG2RAD(X : number) : number
+    {
+        return 0.017453 * (X);
+    }
 
-  var Angles = new Array.<number>();
+    var Angles = new Array.<number>();
 
-  var Target = 28.027;
+    var Target = 28.027;
 
-  function cordicsincos(Target : number) : number {
-	var X;
-	var Y;
-	var TargetAngle;
-	var CurrAngle;
-	var Step;
+    function cordicsincos(Target : number) : number {
+        var X;
+        var Y;
+        var TargetAngle;
+        var CurrAngle;
+        var Step;
 
-	X = this.FIXED(this.AG_CONST);         /* AG_CONST * cos(0) */
-	Y = 0;                       /* AG_CONST * sin(0) */
+        X = this.FIXED(_Main.AG_CONST);         /* AG_CONST * cos(0) */
+        Y = 0;                       /* AG_CONST * sin(0) */
 
-	TargetAngle = this.FIXED(Target);
-	CurrAngle = 0;
-	for (Step = 0; Step < 12; Step++) {
-	  var NewX;
-	  if (TargetAngle > CurrAngle) {
-		NewX = X - (Y >> Step);
-		Y = (X >> Step) + Y;
-		X = NewX;
-		CurrAngle += this.Angles[Step];
-	  } else {
-		NewX = X + (Y >> Step);
-		Y = -(X >> Step) + Y;
-		X = NewX;
-		CurrAngle -= this.Angles[Step];
-	  }
-	}
+        TargetAngle = this.FIXED(Target);
+        CurrAngle = 0;
+        for (Step = 0; Step < 12; Step++) {
+            var NewX;
+            if (TargetAngle > CurrAngle) {
+                NewX = X - (Y >> Step);
+                Y = (X >> Step) + Y;
+                X = NewX;
+                CurrAngle += this.Angles[Step];
+            } else {
+                NewX = X + (Y >> Step);
+                Y = -(X >> Step) + Y;
+                X = NewX;
+                CurrAngle -= this.Angles[Step];
+            }
+        }
 
-	return this.FLOAT(X) * this.FLOAT(Y);
-  }
+        return this.FLOAT(X) * this.FLOAT(Y);
+    }
 
-  ///// End CORDIC
+    ///// End CORDIC
 
-  var total = 0;
+    var total = 0;
 
-  function cordic( runs : number) : number{
-	var start = new Date();
+    function cordic( runs : number) : number{
+        var start = new Date();
 
-	for ( var i = 0 ; i < runs ; i++ ) {
-	  this.total += this.cordicsincos(this.Target);
-	}
+        for ( var i = 0 ; i < runs ; i++ ) {
+            this.total += this.cordicsincos(this.Target);
+        }
 
-	var end = new Date();
+        var end = new Date();
 
-	return end.getTime() - start.getTime();
-  }
+        return end.getTime() - start.getTime();
+    }
 
-  function constructor(){
-	this.Angles = [
-				   this.FIXED(45.0), this.FIXED(26.565), this.FIXED(14.0362), this.FIXED(7.12502),
-				   this.FIXED(3.57633), this.FIXED(1.78991), this.FIXED(0.895174), this.FIXED(0.447614),
-				   this.FIXED(0.223811), this.FIXED(0.111906), this.FIXED(0.055953),
-				   this.FIXED(0.027977)
-				   ];
-	this.cordic(25000);
-  }
+    function constructor(){
+        this.Angles = [
+            this.FIXED(45.0), this.FIXED(26.565), this.FIXED(14.0362), this.FIXED(7.12502),
+            this.FIXED(3.57633), this.FIXED(1.78991), this.FIXED(0.895174), this.FIXED(0.447614),
+            this.FIXED(0.223811), this.FIXED(0.111906), this.FIXED(0.055953),
+            this.FIXED(0.027977)
+            ];
+        this.cordic(25000);
+    }
 
-  static function main() : void {
-	new Main();
-  }
+    static function main(args : string[]) : void {
+        new _Main();
+    }
 }

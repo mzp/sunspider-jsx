@@ -23,43 +23,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-class Main {
+class _Main {
     static const loops = 15;
     static const nx = 120;
     static const nz = 120;
 
     static function morph(a : number[], f : number) : void {
-        var PI2nx = Math.PI * 8/Main.nx;
+        var PI2nx = Math.PI * 8/_Main.nx;
         var sin = Math.sin;
         var f30 = -(50 * sin(f*Math.PI*2));
 
-        for (var i = 0; i < Main.nz; ++i) {
-            for (var j = 0; j < Main.nx; ++j) {
-                a[3*(i*Main.nx+j)+1]    = sin((j-1) * PI2nx ) * -f30;
+        for (var i = 0; i < _Main.nz; ++i) {
+            for (var j = 0; j < _Main.nx; ++j) {
+                a[3*(i*_Main.nx+j)+1]    = sin((j-1) * PI2nx ) * -f30;
             }
         }
     }
 
-    static function main() : void {
+    static function main(args : string[]) : void {
         var a = [] : number[];
-        for (var i=0; i < Main.nx*Main.nz*3; ++i) {
+        for (var i=0; i < _Main.nx*_Main.nz*3; ++i) {
             a[i] = 0;
         }
 
-        for (var i = 0; i < Main.loops; ++i) {
-            Main.morph(a, i/Main.loops);
+        for (var i = 0; i < _Main.loops; ++i) {
+            _Main.morph(a, i/_Main.loops);
         }
 
         var testOutput = 0;
-        for (var i = 0; i < Main.nx; i++) {
-            testOutput += a[3*(i*Main.nx+i)+1];
+        for (var i = 0; i < _Main.nx; i++) {
+            testOutput += a[3*(i*_Main.nx+i)+1];
             log testOutput;
         }
         a = null;
-    }
-}
-class _Main {
-    static function main(args : string[]) : void {
-        Main.main();
     }
 }

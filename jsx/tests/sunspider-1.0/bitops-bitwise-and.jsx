@@ -20,11 +20,11 @@
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
  * OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-class Main {
-    static function main() : void {
+class _Main {
+    static function main(args : string[]) : void {
         var bitwiseAndValue = 4294967296;
         for (var i = 0; i < 600000; i++) {
             bitwiseAndValue = bitwiseAndValue & i;
@@ -34,9 +34,3 @@ class Main {
         log result;
     }
 }
-      
-class _Main {
-    static function main(xs : string[]) : void {
-        Main.main();
-    }
-}        

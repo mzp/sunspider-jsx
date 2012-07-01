@@ -1,6 +1,6 @@
 // Copyright (c) 2004 by Arthur Langereis (arthur_ext at domain xfinitegames, tld com)
 
-class Main {
+class _Main {
     // 1 op = 2 assigns, 16 compare/branches, 8 ANDs, (0-8) ADDs, 8 SHLs
     // O(n)
     static function bitsinbyte(b : number) : number {
@@ -20,14 +20,8 @@ class Main {
     }
 
 
-    static function main() : void {
-        var result = Main.TimeFunc(Main.bitsinbyte);
+    static function main(args : string[]) : void {
+        var result = _Main.TimeFunc(_Main.bitsinbyte);
         log result;
-    }
-}
-
-class _Main {
-    static function main(xs : string[]) : void {
-        Main.main();
     }
 }

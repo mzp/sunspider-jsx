@@ -343,7 +343,7 @@ class Camera {
     }
 }
 
-class Main {
+class _Main {
     function raytraceScene() : number[][][] {
         var startDate = new Date().getTime();
         var numTriangles = 2 * 6;
@@ -469,10 +469,8 @@ s += '        }</scr' + 'ipt>';
         var testOutput = this.arrayToCanvasCommands( this.raytraceScene());
         log testOutput;
     }
-}
 
-class _Main {
     static function main(args : string[]) : void {
-        new Main();
+        new _Main();
     }
 }

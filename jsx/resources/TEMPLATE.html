@@ -47,7 +47,7 @@ function record(time) {
 var _sunSpiderStartDate = new Date();
 
 @SCRIPT@
-JSX.require("@NAME@.jsx").Main.main$();
+JSX.require("@NAME@.jsx")._Main.main$AS([]);
 var _sunSpiderInterval = new Date() - _sunSpiderStartDate;
 
 record(_sunSpiderInterval);

@@ -3,7 +3,7 @@
 //
 //  Contributed by Ian Osgood
 
-class Main {
+class _Main {
     var last = 42;
     var A = 3877;
     var C = 29573;
@@ -89,7 +89,7 @@ class Main {
         this.fastaRandom(5*count*1000, this.HomoSap);
     }
 
-    static function main() : void {
-        new Main();
+    static function main(args : string[]) : void {
+        new _Main();
     }
 }

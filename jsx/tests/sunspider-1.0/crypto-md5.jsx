@@ -7,7 +7,7 @@
  * See http://pajhome.org.uk/crypt/md5 for more info.
  */
 
-class Main {
+class _Main {
     /*
      * Configurable variables. You may need to tweak these to be compatible with
      * the server-side, but the defaults work in most cases.
@@ -21,15 +21,15 @@ class Main {
      * They take string arguments and return either hex or base-64 encoded strings
      */
     function hex_md5(s : string) : string {
-        return this.binl2hex(this.core_md5(this.str2binl(s), s.length * Main.chrsz));
+        return this.binl2hex(this.core_md5(this.str2binl(s), s.length * _Main.chrsz));
     }
 
     function b64_md5(s : string) : string {
-        return this.binl2b64(this.core_md5(this.str2binl(s), s.length * Main.chrsz));
+        return this.binl2b64(this.core_md5(this.str2binl(s), s.length * _Main.chrsz));
     }
 
     function str_md5(s : string) : string {
-        return this.binl2str(this.core_md5(this.str2binl(s), s.length * Main.chrsz));
+        return this.binl2str(this.core_md5(this.str2binl(s), s.length * _Main.chrsz));
     }
 
     function hex_hmac_md5(key : string, data : string) : string {
@@ -180,7 +180,7 @@ class Main {
     function core_hmac_md5(key : string, data : string) : Array.<number>
     {
         var bkey = this.str2binl(key);
-        if(bkey.length > 16) bkey = this.core_md5(bkey, key.length * Main.chrsz);
+        if(bkey.length > 16) bkey = this.core_md5(bkey, key.length * _Main.chrsz);
 
         var ipad = new number[16];
         var opad = new number[16];
@@ -190,7 +190,7 @@ class Main {
             opad[i] = bkey[i] ^ 0x5C5C5C5C;
         }
 
-        var hash = this.core_md5(ipad.concat(this.str2binl(data)), 512 + data.length * Main.chrsz);
+        var hash = this.core_md5(ipad.concat(this.str2binl(data)), 512 + data.length * _Main.chrsz);
         return this.core_md5(opad.concat(hash), 512 + 128);
     }
 
@@ -215,14 +215,14 @@ class Main {
 
     /*
  * Convert a string to an array of little-endian words
- * If Main.chrsz is ASCII, characters >255 have their hi-byte silently ignored.
+ * If _Main.chrsz is ASCII, characters >255 have their hi-byte silently ignored.
  */
     function str2binl(str : string) : Array.<number>
     {
         var bin = new number[];
-        var mask = (1 << Main.chrsz) - 1;
-        for(var i = 0; i < str.length * Main.chrsz; i += Main.chrsz)
-        bin[i>>5] |= (str.charCodeAt(i / Main.chrsz) & mask) << (i%32);
+        var mask = (1 << _Main.chrsz) - 1;
+        for(var i = 0; i < str.length * _Main.chrsz; i += _Main.chrsz)
+        bin[i>>5] |= (str.charCodeAt(i / _Main.chrsz) & mask) << (i%32);
         return bin;
     }
 
@@ -232,8 +232,8 @@ class Main {
     function binl2str(bin : Array.<number>) : string
     {
         var str = "";
-        var mask = (1 << Main.chrsz) - 1;
-        for(var i = 0; i < bin.length * 32; i += Main.chrsz)
+        var mask = (1 << _Main.chrsz) - 1;
+        for(var i = 0; i < bin.length * 32; i += _Main.chrsz)
         str += String.fromCharCode((bin[i>>5] >>> (i % 32)) & mask);
         return str;
     }
@@ -243,7 +243,7 @@ class Main {
  */
     function binl2hex(binarray : Array.<number>) : string
     {
-        var hex_tab = Main.hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
+        var hex_tab = _Main.hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
         var str = "";
         for(var i = 0; i < binarray.length * 4; i++)
         {
@@ -267,7 +267,7 @@ class Main {
             |  ((binarray[i+2 >> 2] >> 8 * ((i+2)%4)) & 0xFF);
             for(var j = 0; j < 4; j++)
             {
-                if(i * 8 + j * 6 > binarray.length * 32) str += Main.b64pad;
+                if(i * 8 + j * 6 > binarray.length * 32) str += _Main.b64pad;
                 else str += tab.charAt((triplet >> 6*(3-j)) & 0x3F);
             }
         }
@@ -306,13 +306,7 @@ class Main {
         log md5Output;
     }
 
-    static function main() : void {
-        new Main();
-    }
-}
-
-class _Main {
     static function main(args : string[]) : void {
-        Main.main();
+        new _Main();
     }
 }

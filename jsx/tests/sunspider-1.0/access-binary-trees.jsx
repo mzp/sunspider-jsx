@@ -4,11 +4,11 @@
 
 class TreeNode {
     var item  : number;
-    var left  : MayBeUndefined.<TreeNode>;
-    var right : MayBeUndefined.<TreeNode>;
+    var left  : Nullable.<TreeNode>;
+    var right : Nullable.<TreeNode>;
 
-    function constructor(left : MayBeUndefined.<TreeNode>,
-                         right : MayBeUndefined.<TreeNode>,
+    function constructor(left : Nullable.<TreeNode>,
+                         right : Nullable.<TreeNode>,
                          item  : number) {
         this.left  = left;
         this.right = right;
@@ -21,12 +21,12 @@ class TreeNode {
     }
 }
 
-class Main {
+class _Main {
     static function bottomUpTree(item : number, depth : number) : TreeNode {
         if (depth>0){
             return new TreeNode(
-                Main.bottomUpTree(2*item-1, depth-1)
-                ,Main.bottomUpTree(2*item, depth-1)
+                _Main.bottomUpTree(2*item-1, depth-1)
+                ,_Main.bottomUpTree(2*item, depth-1)
                 ,item
             );
         } else {
@@ -34,22 +34,22 @@ class Main {
         }
     }
 
-    static function main() : void {
+    static function main(args : string[]) : void {
         var ret : number;
         for ( var n = 4; n <= 7; n += 1 ) {
             var minDepth = 4;
             var maxDepth = Math.max(minDepth + 2, n);
             var stretchDepth = maxDepth + 1;
-            var check = Main.bottomUpTree(0,stretchDepth).itemCheck();
+            var check = _Main.bottomUpTree(0,stretchDepth).itemCheck();
 
-            var longLivedTree = Main.bottomUpTree(0,maxDepth);
+            var longLivedTree = _Main.bottomUpTree(0,maxDepth);
             for (var depth=minDepth; depth<=maxDepth; depth+=2) {
                 var iterations = 1 << (maxDepth - depth + minDepth);
 
                 check = 0;
                 for (var i=1; i<=iterations; i++){
-                    check += Main.bottomUpTree(i,depth).itemCheck();
-                    check += Main.bottomUpTree(-i,depth).itemCheck();
+                    check += _Main.bottomUpTree(i,depth).itemCheck();
+                    check += _Main.bottomUpTree(-i,depth).itemCheck();
                 }
             }
             ret = longLivedTree.itemCheck();

@@ -1,6 +1,6 @@
 // Copyright (c) 2004 by Arthur Langereis (arthur_ext at domain xfinitegames, tld com
 
-class Main {
+class _Main {
     var result = 0;
 
     // 1 op = 6 ANDs, 3 SHRs, 3 SHLs, 4 assigns, 2 ADDs
@@ -33,14 +33,8 @@ addr3,r3,r10
         return sum;
     }
 
-    static function main() : void {
-        var sum = Main.TimeFunc(Main.fast3bitlookup);
+    static function main(args : string[]) : void {
+        var sum = _Main.TimeFunc(_Main.fast3bitlookup);
         log sum;
-    }
-}
-
-class _Main {
-    static function main(xs : string[]) : void {
-        Main.main();
     }
 }

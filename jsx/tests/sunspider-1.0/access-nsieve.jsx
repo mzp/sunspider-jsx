@@ -2,7 +2,7 @@
 // http://shootout.alioth.debian.org/
 //
 // modified by Isaac Gouy
-class Main {
+class _Main {
     function pad(number : number, width : number) : string {
         var s = number.toString();
         var prefixWidth = width - s.length;
@@ -39,7 +39,7 @@ class Main {
         this.sieve();
     }
 
-    static function main() : void {
-        new Main();
+    static function main(args: string[]) : void {
+        new _Main();
     }
 }

@@ -3,7 +3,7 @@
 //
 //  Contributed by Ian Osgood
 
-class Main  {
+class _Main  {
     static function pad(n : number,width : number) : string {
         var s = n.toString();
         while (s.length < width) s = ' ' + s;
@@ -26,19 +26,13 @@ class Main  {
     static function sieve() : number[] {
         for (var i = 4; i <= 4; i++) {
             var isPrime = new number[(10000<<i)+31>>5];
-            Main.primes(isPrime, i);
+            _Main.primes(isPrime, i);
         }
         return isPrime;
     }
 
-    static function main() : void {
-        var result = Main.sieve();
-        log result;
-    }
-}
-
-class _Main {
     static function main(args : string[]) : void {
-        Main.main();
+        var result = _Main.sieve();
+        log result;
     }
 }
