@@ -1,0 +1,5 @@
+#!/bin/sh
+(cd js; pwd; ./make-hosted)
+(cd jsx; pwd; ./compile-jsx; ./make-hosted)
+rsync -avz -e ssh js/hosted/ proofcafe.org:/var/www/jsx-bench/js
+rsync -avz -e ssh jsx/hosted/ proofcafe.org:/var/www/jsx-bench/jsx
