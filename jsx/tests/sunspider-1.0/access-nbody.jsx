@@ -3,9 +3,9 @@
    contributed by Isaac Gouy */
 
 class Body {
-    static var PI = 3.141592653589793;
-    static var SOLAR_MASS = 4 * Body.PI * Body.PI;
-    static var DAYS_PER_YEAR = 365.24;
+    static const PI = 3.141592653589793;
+    static const SOLAR_MASS = 4 * Body.PI * Body.PI;
+    static const DAYS_PER_YEAR = 365.24;
 
     var x : number;
     var y : number;
